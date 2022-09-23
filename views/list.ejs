@@ -9,7 +9,9 @@
     
     <ul>
         <% for( var i = 0; i < newListItems.length; i++ ) { %>
-            <li> <%= newListItem[i] %> </li>
+            <% if(newListItems[i] != "") {%>
+                <li> <%= newListItems[i] %> </li>
+            <% } %>
         <% } %>
     </ul>
     
