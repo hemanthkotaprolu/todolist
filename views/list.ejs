@@ -2,24 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
     <title>To Do List</title>
 </head>
 <body>
-    <h1> <%= kindOfDay %> </h1>
     
-    <ul>
-        <% for( var i = 0; i < newListItems.length; i++ ) { %>
-            <% if(newListItems[i] != "") {%>
-                <li> <%= newListItems[i] %> </li>
+    <div class="box" id="heading">
+        <h1> <%= kindOfDay %> </h1>
+    </div>
+    
+    <div class="box">
+            <% for( var i = 0; i < newListItems.length; i++ ) { %>
+                <% if(newListItems[i] != "") {%>
+                    <div class="item">
+                        <input type="checkbox">
+                        <p> <%= newListItems[i] %> </p>
+                    </div>
+                <% } %>
             <% } %>
-        <% } %>
-    </ul>
-    
-    
-    <form action="/" method="post">
-        <input type="text" name="newItem" autofocus>
-        <button type="submit" name="button">Add</button>
-    </form>
-    
+            <form class="item" action="/" method="post">
+                <input type="text" name="newItem" autofocus placeholder="New Item" autocomplete="off">
+                <button type="submit" name="button">+</button>
+            </form>
+    </div>
 </body>
 </html>
