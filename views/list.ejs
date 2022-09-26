@@ -1,29 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>To Do List</title>
-</head>
-<body>
+<%- include("header") -%>
     
-    <div class="box" id="heading">
-        <h1> <%= kindOfDay %> </h1>
-    </div>
-    
-    <div class="box">
-            <% for( var i = 0; i < newListItems.length; i++ ) { %>
-                <% if(newListItems[i] != "") {%>
-                    <div class="item">
-                        <input type="checkbox">
-                        <p> <%= newListItems[i] %> </p>
-                    </div>
-                <% } %>
+<div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+</div>
+
+<div class="box">
+        <% for( var i = 0; i < newListItems.length; i++ ) { %>
+            <% if(newListItems[i] != "") {%>
+                <div class="item">
+                    <input type="checkbox">
+                    <p> <%= newListItems[i] %> </p>
+                </div>
             <% } %>
-            <form class="item" action="/" method="post">
-                <input type="text" name="newItem" autofocus placeholder="New Item" autocomplete="off">
-                <button type="submit" name="button">+</button>
-            </form>
-    </div>
-</body>
-</html>
+        <% } %>
+        <form class="item" action="/" method="post">
+            <input type="text" name="newItem" autofocus placeholder="New Item" autocomplete="off">
+            <button type="submit" name="list" value=<%= listTitle %>>+</button>
+        </form>
+</div>
+<%- include("footer") -%>
