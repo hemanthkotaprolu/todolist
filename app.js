@@ -76,23 +76,31 @@ app.get('/', function (req, res) {
 
 app.post("/", function (req, res) {
     const itemName = req.body.newItem;
+    const listName = req.body.list;
     
     const item = new Item({
         name: itemName
     });
     
-    item.save();
-    res.redirect("/");
+    if(listName === "Today") {
+        item.save();
+        res.redirect("/");
+    } else {
+        List.findOne({name: listName}, function(error, foundList){
+            if(error) {
+                console.log(error);
+            } else {
+                foundList.items.push(item);
+                foundList.save();
+                res.redirect("/"+listName);
+            }
+        });
+    }
+    
 });
 
 app.get("/:customeListName", function(req, res) {
     const customeListName = req.params.customeListName;
-    
-    // if(List.findOne({name: customeListName})) {
-    //     console.log("Found!!");
-    // } else {
-    //     console.log("Not Found!!");
-    // }
     
     List.findOne({name: customeListName}, function(error,foundList){
         if(error) {
