@@ -18,7 +18,7 @@ const connectionParams = {
 
 try {
     mongoose.connect(
-        "mongodb+srv://kotaproluhemanth:mongodb@cluster1.49ync9e.mongodb.net/todolistDB?retryWrites=true&w=majority",
+        <mongodb connecting string> ,
         connectionParams
     );
     console.log("DB connected!");
