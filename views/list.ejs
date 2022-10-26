@@ -5,17 +5,18 @@
 </div>
 
 <div class="box">
-        <% for( var i = 0; i < newListItems.length; i++ ) { %>
-            <% if(newListItems[i] != "") {%>
-                <div class="item">
-                    <input type="checkbox">
-                    <p> <%= newListItems[i] %> </p>
-                </div>
-            <% } %>
+    <% newListItems.forEach(function(item){ %>
+        <% if(item.name != "") { %>
+            <div class="item">
+                <input type="checkbox">
+                <p> <%= item.name %> </p>
+            </div>
         <% } %>
-        <form class="item" action="/" method="post">
-            <input type="text" name="newItem" autofocus placeholder="New Item" autocomplete="off">
-            <button type="submit" name="list" value=<%= listTitle %>>+</button>
-        </form>
+    <% }); %>
+    
+    <form class="item" action="/" method="post">
+        <input type="text" name="newItem" autofocus placeholder="New Item" autocomplete="off">
+        <button type="submit" name="list" value=<%= listTitle %>>+</button>
+    </form>
 </div>
 <%- include("footer") -%>
