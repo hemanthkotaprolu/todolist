@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const mongoose =require('mongoose');
-const e = require('express');
+const _ = require('lodash');
 
 const app = express();
 const port = 3000;
@@ -101,7 +101,7 @@ app.post("/", function (req, res) {
 });
 
 app.get("/:customeListName", function(req, res) {
-    const customeListName = req.params.customeListName;
+    const customeListName = _.capitalize(req.params.customeListName);
     
     List.findOne({name: customeListName}, function(error,foundList){
         if(error) {
@@ -140,27 +140,6 @@ app.post("/work", function(req, res){
 app.get("/about", function(req, res) {
     res.render("about");
 })
-
-// app.post("/delete", function(req, res) {
-//     const checkItemId = req.body.checkbox;
-//     const listName = req.body.listName;
-    
-//     if(listName === "Today") {
-//         Item.findByIdAndRemove(checkItemId,function(error){
-//             if(error) {
-//                 console.log(error);
-//             } else {
-//                 res.redirect("/");
-//             }
-//         });    
-//     } else {
-//         List.findOneAndUpdate({name: listName},{$pull: {items: {_id: checkItemId}}},function(error, foundList){
-//             if(!error) {
-//                 res.redirect("/" + listName);
-//             }
-//         });
-//     }
-// });
 
 app.post("/delete", function(req, res){
     const checkedItemId = req.body.checkbox;
