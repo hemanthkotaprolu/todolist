@@ -103,6 +103,18 @@ app.get("/about", function(req, res) {
     res.render("about");
 })
 
+app.post("/delete", function(req, res) {
+    const checkItemId = req.body.checkbox;
+    
+    Item.findByIdAndRemove(checkItemId,function(error){
+        if(error) {
+            console.log(error);
+        }
+    });
+    
+    res.redirect("/");
+});
+
 app.listen(port, function () {
     console.log("App started running on port: " + port);
 });
